@@ -1,0 +1,57 @@
+let firstName = "Niharika";
+let surName = "Verma";
+const email = `Niharika${Math.floor(Math.random()*100)}@yahoo.com`;
+let passWord = "Niharika@123";
+let Date = '30';
+let Month = 'Aug';
+let Year = '1988';
+
+describe('facebook', () => {
+
+beforeEach(() => {
+  cy.visit('https://www.facebook.com/');
+      
+  cy.findByTitle('English (UK)').click(); // To change the language from Hindi to English.
+  cy.findByTestId('open-registration-form-button').click(); // To click on create new account button. 
+
+})
+
+})
+  it('learn more', () => {
+
+    cy.findByRole('link',{name:'Learn more'}).invoke('attr','target').then(href =>{
+    cy.visit(href)
+    });
+
+    it('create a new account', () => { 
+
+      // To enter the firstname.
+      cy.findByRole('textbox',{name:'First name'}).type(firstName);
+
+      // To enter the Surname.
+      cy.findByRole('textbox',{name:'Surname'}).type(surName); 
+
+      //   To enter the email.
+      cy.findByRole('textbox',{name:'Mobile number or email address'}).type(email);
+      cy.findByRole('textbox',{name:'Re-enter email address'}).type(email); 
+
+      // To enter the passcode.
+      cy.findByLabelText('New password').type(passWord);  
+      
+      // To select the Day, Month & Year
+      cy.findByRole('combobox',{name:'Day'}).select(Date); 
+      
+      cy.findByRole('combobox',{name:'Month'}).select(Month);
+
+      cy.findByRole('combobox',{name:'Year'}).select(Year); 
+
+      // To tick the female in gender
+      cy.findByRole('radio', { name: 'Female'}).click(); 
+
+      // To click on the Sign up button
+      cy.findByRole('button',{name:'Sign Up'}).click();  
+
+    })
+    
+  })
+  
